@@ -1,0 +1,15 @@
+body{
+    background-image: url();
+}
+
+#hour{
+    overflow: scroll;
+}
+
+.double div{
+    width: 48%;
+}
+
+.petit{
+    font-size: 0.8rem;
+}
