@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="text-center bg-secondary text-light">
+<body class="text-center bg-primary text-light">
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Navbar</a>
@@ -28,130 +28,18 @@
         </div>
     </nav>
 
-    <h1 class="fs-3 mt-3" id="ville"></h1>
 
-    <h2 class="fs-1"><img src="http://openweathermap.org/img/w/03d.png" alt=""> 1°</h2>
-    <p class="m-0">Partiellement nuageux</p>
-    <p><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87 (arrondire)</p>
+    <div id="liveMeteo">
+    </div>
 
     <div class="mt-5 mx-2 d-flex flex-nowrap gap-3 border rounded" id="hour">
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
-        <div class="p-2">
-            <p class="m-0">12h</p>
-            <img src="http://openweathermap.org/img/w/03d.png" alt="">
-            <p>1.87 (arrondire)</p>
-        </div>
+        
     </div>
 
     <div class="d-flex justify-content-between flex-nowrap mt-3 mx-2 double" id="double">
-        <div class="border rounded text-start px-3">
-            <p class="pt-2"><i class="fa-solid fa-temperature-half"></i> RESSENTI</p>
-            <p>-0.58</p>
-            <p class="petit">if + que temp alors = Le ressenti est plus élévé que la température réelle</p>
-        </div>
-        <div class="border rounded text-start px-3">
-            <p class="pt-2"><i class="fa-solid fa-water"></i> HUMIDITÉ</p>
-            <p>80%</p>
-            <p class="petit">Le point de rosé est de Td = T - ((100-HR)/5) </p>
-        </div>
     </div>
 
     <div class="my-3 mx-2 gap-3 border rounded px-3" id="tenDay">
-        <p class="pt-2 text-start"><i class="fa-solid fa-calendar-days"></i> Prévision sur 10 jours</p>
-        <div class="row">
-            <p class="col-5 text-start">Auj.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
-        <div class="row">
-            <p class="col-5 text-start">Mar.</p>
-            <img src="http://openweathermap.org/img/w/03d.png" class="col-2 text-center" alt="">
-            <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> 3.47° <i class="fa-solid fa-arrow-down"></i> 1.87</p>
-        </div>
     </div>
 
     <div class="my-3 mx-2 gap-3 border rounded px-3">
@@ -177,6 +65,7 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
     <script src="https://kit.fontawesome.com/50a1934b21.js" crossorigin="anonymous"></script>
+    <script src="./assets/js/moment.js"></script>
     <script src="./assets/js/script.js"></script>
 </body>
 
