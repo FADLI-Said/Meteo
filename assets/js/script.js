@@ -1,6 +1,9 @@
+"strict use"
+
 let key = "b0874e5027f098250f7cf0d404b5780a";
 let city = ""
 city = "havre"
+
 
 fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&lang=fr&units=metric`)
     .then(reponse => reponse.json())
@@ -29,17 +32,30 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&l
         }
 
         document.getElementById("double").innerHTML = `
-         <div class="border border-white rounded text-start px-3" id="gray">
+         <div class="border border-white rounded text-start px-3" id="double_color">
             <p class="pt-2"><i class="fa-solid fa-temperature-half"></i> RESSENTI</p>
             <p>${Math.round(10 * météo.list[0].main.feels_like) / 10}°c</p>
             <p class="petit">${(météo.list[0].main.feels_like) > (météo.list[0].main.temp) ? 'Le ressenti est plus élévé que la température réelle' : 'Le ressenti est moins élévé que la température réelle'}</p>
         </div >
-            <div class="border border-white rounded text-start px-3" id="graySecond">
+            <div class="border border-white rounded text-start px-3" id="double_colorSecond">
                 <p class="pt-2"><i class="fa-solid fa-water"></i> HUMIDITÉ</p>
                 <p>${météo.list[0].main.humidity}%</p>
                 <p class="petit">Le point de rosé est de ${Math.round(météo.list[0].main.temp - ((100 - météo.list[0].main.humidity) / 5))}° </p>
             </div>
         `
+
+        for (let i = 0; i < météo.list.length; i++) {
+            if (moment(météo.list[i].dt_txt).format("HH[h]") == "12h") {
+                document.getElementById("tenDay").innerHTML += `
+                <div class="row">
+                    <p class="col-5 text-start">${moment(météo.list[i].dt_txt).locale("fr").format("ddd Do")} à Midi</p>
+                    <img src="http://openweathermap.org/img/w/${météo.list[i].weather[0].icon}.png" class="col-2 text-center" alt="image d'un temp avec ${météo.list[i].weather[0].description}">
+                    <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> ${Math.round(10 * météo.list[i].main.temp_max) / 10}°c <i class="fa-solid fa-arrow-down"></i> ${Math.round(10 * météo.list[i].main.temp_min) / 10}°c</p>
+                </div>
+                `
+            }
+
+        }
 
         let deg = ""
 
@@ -76,16 +92,14 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&l
         const sunrise = new Date(météo.city.sunrise * 1000);
         const sunset = new Date(météo.city.sunset * 1000);
 
-        moment.locale("fr")
-
         document.getElementById("riseAndSet").innerHTML = `
-       <div class="border border-white rounded text-start px-3" id="gray">
+       <div class="border border-white rounded text-start px-3" id="riseAndSet_color">
             <p class="pt-2"><i class="fa-solid fa-sun"></i> Lever SOLEIL</p>
-            <p>${sunrise}</p>
+            <p>${moment(sunrise).locale("fr").format("LT")}</p>
         </div>
-            <div class="border border-white rounded text-start px-3" id="graySecond">
+            <div class="border border-white rounded text-start px-3" id="riseAndSet_colorSecond">
                 <p class="pt-2"><i class="fa-solid fa-moon"></i> Coucher SOLEIL</p>
-                <p>${sunset}</p>
+                <p>${moment(sunset).locale("fr").format("LT")}</p>
             </div>
         `
 
@@ -98,8 +112,11 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&l
             document.getElementById("nav").style.background = "rgb(179, 226, 238)";
             document.getElementById("hour").style.background = "rgba(179, 226, 238,0.7)"
             document.getElementById("wind").style.background = "rgba(179, 226, 238,0.7)"
-            document.getElementById("gray").style.background = "rgba(179, 226, 238,0.7)"
-            document.getElementById("graySecond").style.background = "rgba(179, 226, 238,0.7)"
+            document.getElementById("double_color").style.background = "rgba(179, 226, 238,0.7)"
+            document.getElementById("double_colorSecond").style.background = "rgba(179, 226, 238,0.7)"
+            document.getElementById("tenDay").style.background = "rgba(179, 226, 238,0.7)"
+            document.getElementById("riseAndSet_color").style.background = "rgba(179, 226, 238,0.7)"
+            document.getElementById("riseAndSet_colorSecond").style.background = "rgba(179, 226, 238,0.7)"
         }
 
         if (météo.list[0].weather[0].main == "Clear") {
@@ -107,8 +124,11 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&l
             document.getElementById("nav").style.background = "rgba(255, 245, 225, 0.7)";
             document.getElementById("hour").style.background = "rgba(255, 245, 225, 0.7)"
             document.getElementById("wind").style.background = "rgba(255, 245, 225, 0.7)"
-            document.getElementById("gray").style.background = "rgba(255, 245, 225, 0.7)"
-            document.getElementById("graySecond").style.background = "rgba(255, 245, 225, 0.7)"
+            document.getElementById("double_color").style.background = "rgba(255, 245, 225, 0.7)"
+            document.getElementById("double_colorSecond").style.background = "rgba(255, 245, 225, 0.7)"
+            document.getElementById("tenDay").style.background = "rgba(255, 245, 225, 0.7)"
+            document.getElementById("riseAndSet_color").style.background = "rgba(255, 245, 225, 0.7)"
+            document.getElementById("riseAndSet_colorSecond").style.background = "rgba(255, 245, 225, 0.7)"
         }
 
         if (météo.list[0].weather[0].main == "Rain") {
@@ -116,8 +136,23 @@ fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${key}&l
             document.getElementById("nav").style.background = "rgb(129, 129, 127)";
             document.getElementById("hour").style.background = "rgba(129, 129, 127, 0.7)"
             document.getElementById("wind").style.background = "rgba(129, 129, 127, 0.7)"
-            document.getElementById("gray").style.background = "rgba(129, 129, 127, 0.7)"
-            document.getElementById("graySecond").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("double_color").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("double_colorSecond").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("tenDay").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("riseAndSet_color").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("riseAndSet_colorSecond").style.background = "rgba(129, 129, 127, 0.7)"
+        }
+
+        if (météo.list[0].weather[0].main == "Snow") {
+            document.getElementById("body").style.backgroundImage = "url(assets/images/snow.png)";
+            document.getElementById("nav").style.background = "rgb(129, 129, 127)";
+            document.getElementById("hour").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("wind").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("double_color").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("double_colorSecond").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("tenDay").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("riseAndSet_color").style.background = "rgba(129, 129, 127, 0.7)"
+            document.getElementById("riseAndSet_colorSecond").style.background = "rgba(129, 129, 127, 0.7)"
         }
 
         console.log(city);
@@ -156,17 +191,30 @@ function search_by_name(city_name) {
             }
 
             document.getElementById("double").innerHTML = `
-         <div class="border border-white rounded text-start px-3" id="gray">
+         <div class="border border-white rounded text-start px-3" id="double_color">
             <p class="pt-2"><i class="fa-solid fa-temperature-half"></i> RESSENTI</p>
             <p>${Math.round(10 * data.list[0].main.feels_like) / 10}°c</p>
             <p class="petit">${(data.list[0].main.feels_like) > (data.list[0].main.temp) ? 'Le ressenti est plus élévé que la température réelle' : 'Le ressenti est moins élévé que la température réelle'}</p>
         </div >
-            <div class="border border-white rounded text-start px-3" id="graySecond">
+            <div class="border border-white rounded text-start px-3" id="double_colorSecond">
                 <p class="pt-2"><i class="fa-solid fa-water"></i> HUMIDITÉ</p>
                 <p>${data.list[0].main.humidity}%</p>
                 <p class="petit">Le point de rosé est de ${Math.round(data.list[0].main.temp - ((100 - data.list[0].main.humidity) / 5))}° </p>
             </div>
         `
+            document.getElementById("tenDay").innerHTML = ""
+            for (let i = 0; i < data.list.length; i++) {
+                if (moment(data.list[i].dt_txt).format("HH[h]") == "12h") {
+                    document.getElementById("tenDay").innerHTML += `
+                <div class="row">
+                    <p class="col-5 text-start">${moment(data.list[i].dt_txt).locale("fr").format("ddd Do")} à Midi</p>
+                    <img src="http://openweathermap.org/img/w/${data.list[i].weather[0].icon}.png" class="col-2 text-center" alt="image d'un temp avec ${data.list[i].weather[0].description}">
+                    <p class="col-5 text-end"><i class="fa-solid fa-arrow-up"></i> ${Math.round(10 * data.list[i].main.temp_max) / 10}°c <i class="fa-solid fa-arrow-down"></i> ${Math.round(10 * data.list[i].main.temp_min) / 10}°c</p>
+                </div>
+                `
+                }
+
+            }
 
             let deg = ""
 
@@ -199,6 +247,20 @@ function search_by_name(city_name) {
         </div>
         `
 
+            const sunrise = new Date(data.city.sunrise * 1000);
+            const sunset = new Date(data.city.sunset * 1000);
+
+            document.getElementById("riseAndSet").innerHTML = `
+                <div class="border border-white rounded text-start px-3" id="riseAndSet_color">
+                    <p class="pt-2"><i class="fa-solid fa-sun"></i> Lever SOLEIL</p>
+                <p>${moment(sunrise).locale("fr").format("LT")}</p>
+                </div>
+                <div class="border border-white rounded text-start px-3" id="riseAndSet_colorSecond">
+                    <p class="pt-2"><i class="fa-solid fa-moon"></i> Coucher SOLEIL</p>
+                    <p>${moment(sunset).locale("fr").format("LT")}</p>
+                </div>
+        `
+
             console.log(data.list[0].weather[0].main);
 
 
@@ -207,8 +269,11 @@ function search_by_name(city_name) {
                 document.getElementById("nav").style.background = "rgb(179, 226, 238)";
                 document.getElementById("hour").style.background = "rgba(179, 226, 238,0.7)"
                 document.getElementById("wind").style.background = "rgba(179, 226, 238,0.7)"
-                document.getElementById("gray").style.background = "rgba(179, 226, 238,0.7)"
-                document.getElementById("graySecond").style.background = "rgba(179, 226, 238,0.7)"
+                document.getElementById("double_color").style.background = "rgba(179, 226, 238,0.7)"
+                document.getElementById("double_colorSecond").style.background = "rgba(179, 226, 238,0.7)"
+                document.getElementById("tenDay").style.background = "rgba(179, 226, 238,0.7)"
+                document.getElementById("riseAndSet_color").style.background = "rgba(179, 226, 238,0.7)"
+                document.getElementById("riseAndSet_colorSecond").style.background = "rgba(179, 226, 238,0.7)"
             }
 
             if (data.list[0].weather[0].main == "Clear") {
@@ -216,8 +281,11 @@ function search_by_name(city_name) {
                 document.getElementById("nav").style.background = "rgba(255, 245, 225, 0.7)";
                 document.getElementById("hour").style.background = "rgba(255, 245, 225, 0.7)"
                 document.getElementById("wind").style.background = "rgba(255, 245, 225, 0.7)"
-                document.getElementById("gray").style.background = "rgba(255, 245, 225, 0.7)"
-                document.getElementById("graySecond").style.background = "rgba(255, 245, 225, 0.7)"
+                document.getElementById("double_color").style.background = "rgba(255, 245, 225, 0.7)"
+                document.getElementById("double_colorSecond").style.background = "rgba(255, 245, 225, 0.7)"
+                document.getElementById("tenDay").style.background = "rgba(255, 245, 225, 0.7)"
+                document.getElementById("riseAndSet_color").style.background = "rgba(255, 245, 225, 0.7)"
+                document.getElementById("riseAndSet_colorSecond").style.background = "rgba(255, 245, 225, 0.7)"
             }
 
             if (data.list[0].weather[0].main == "Rain") {
@@ -225,11 +293,24 @@ function search_by_name(city_name) {
                 document.getElementById("nav").style.background = "rgb(129, 129, 127)";
                 document.getElementById("hour").style.background = "rgba(129, 129, 127, 0.7)"
                 document.getElementById("wind").style.background = "rgba(129, 129, 127, 0.7)"
-                document.getElementById("gray").style.background = "rgba(129, 129, 127, 0.7)"
-                document.getElementById("graySecond").style.background = "rgba(129, 129, 127, 0.7)"
+                document.getElementById("double_color").style.background = "rgba(129, 129, 127, 0.7)"
+                document.getElementById("double_colorSecond").style.background = "rgba(129, 129, 127, 0.7)"
+                document.getElementById("tenDay").style.background = "rgba(129, 129, 127, 0.7)"
+                document.getElementById("riseAndSet_color").style.background = "rgba(129, 129, 127, 0.7)"
+                document.getElementById("riseAndSet_colorSecond").style.background = "rgba(129, 129, 127, 0.7)"
             }
 
-
+            if (data.list[0].weather[0].main == "Snow") {
+                document.getElementById("body").style.backgroundImage = "url(assets/images/snow.png)";
+                document.getElementById("nav").style.background = "rgb(255, 255, 255)";
+                document.getElementById("hour").style.background = "rgba(255, 255, 255, 0.7)"
+                document.getElementById("wind").style.background = "rgba(255, 255, 255, 0.7)"
+                document.getElementById("double_color").style.background = "rgba(255, 255, 255, 0.7)"
+                document.getElementById("double_colorSecond").style.background = "rgba(255, 255, 255, 0.7)"
+                document.getElementById("tenDay").style.background = "rgba(255, 255, 255, 0.7)"
+                document.getElementById("riseAndSet_color").style.background = "rgba(255, 255, 255, 0.7)"
+                document.getElementById("riseAndSet_colorSecond").style.background = "rgba(255, 255, 255, 0.7)"
+            }
 
             console.log(city);
 
