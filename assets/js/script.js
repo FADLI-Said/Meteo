@@ -202,7 +202,9 @@ function search_by_name(city_name) {
                 <p class="petit">Le point de rosé est de ${Math.round(data.list[0].main.temp - ((100 - data.list[0].main.humidity) / 5))}° </p>
             </div>
         `
-            document.getElementById("tenDay").innerHTML = ""
+            document.getElementById("tenDay").innerHTML = `
+            <p class="pt-2 text-start"><i class="fa-solid fa-calendar-days"></i> Prévision sur 5 jours</p>
+            `
             for (let i = 0; i < data.list.length; i++) {
                 if (moment(data.list[i].dt_txt).format("HH[h]") == "12h") {
                     document.getElementById("tenDay").innerHTML += `
