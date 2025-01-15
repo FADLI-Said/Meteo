@@ -1,9 +1,7 @@
 body{
-    background-image: url();
-}
-
-#hour{
-    overflow: scroll;
+    /* background-image: url(/assets/images/cloud.png); */
+    background-position: bottom;
+    background-size: cover;
 }
 
 .double div{
@@ -12,4 +10,14 @@ body{
 
 .petit{
     font-size: 0.8rem;
+}
+
+#hour, #double div, #wind{
+    background-color: rgba(179, 226, 238,0.7);
+}
+
+@media(max-width:640px){
+    #hour{
+        overflow: scroll;
+    }
 }

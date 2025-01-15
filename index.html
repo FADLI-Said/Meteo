@@ -10,56 +10,42 @@
     <link rel="stylesheet" href="./assets/css/style.css">
 </head>
 
-<body class="text-center bg-primary text-light">
-    <nav class="navbar navbar-expand-lg bg-body-tertiary">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse pt-3" id="navbarSupportedContent">
-                <form class="d-flex" role="search">
-                    <input class="form-control me-2" type="search" placeholder="ex : Le Havre" aria-label="Search">
-                    <button class="btn btn-outline-primary" type="submit">Rechercher</button>
-                </form>
+<body class="text-center bg-primary" id="body">
+    <div class="container col-12 col-lg-6 p-0 red">
+        <nav class="navbar navbar-expand-lg" id="nav">
+            <div class="container-fluid justify-content-between">
+                <a class="navbar-brand" href="#">Météo</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation" >
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse pt-3" id="navbarSupportedContent">
+                    <div class="d-flex">
+                        <input class="form-control me-2" type="search" placeholder="ex : Le Havre" aria-label="Search" id="search">
+                        <button class="btn btn-outline-dark" id="validation">Rechercher</button>
+                    </div>
+                </div>
             </div>
+        </nav>
+
+
+        <div id="liveMeteo">
         </div>
-    </nav>
 
+        <div class="mt-5 mx-2 d-flex flex-nowrap gap-3 border border-white rounded overflow-hiden" id="hour">
 
-    <div id="liveMeteo">
-    </div>
-
-    <div class="mt-5 mx-2 d-flex flex-nowrap gap-3 border rounded" id="hour">
-        
-    </div>
-
-    <div class="d-flex justify-content-between flex-nowrap mt-3 mx-2 double" id="double">
-    </div>
-
-    <div class="my-3 mx-2 gap-3 border rounded px-3" id="tenDay">
-    </div>
-
-    <div class="my-3 mx-2 gap-3 border rounded px-3">
-        <p class="pt-2 text-start"><i class="fa-solid fa-wind"></i> VENT</p>
-        <div class="row">
-            <p class="col-6 text-start">Vent</p>
-            <p class="col-6 text-end">2.27 km/h</p>
         </div>
-        <div class="row">
-            <p class="col-6 text-start">Rafales</p>
-            <p class="col-6 text-end">3.26</p>
+
+        <div class="d-flex justify-content-between flex-nowrap mt-3 mx-2 double" id="double">
         </div>
-        <div class="row">
-            <p class="col-6 text-start">Direction</p>
-            <p class="col-6 text-end">120</p>
+
+        <div class="my-3 mx-2 gap-3 border border-white rounded px-3" id="wind">
+        </div>
+
+        <div class="d-flex justify-content-between flex-nowrap mt-3 mx-2 double" id="riseAndSet">
         </div>
     </div>
-
-
-
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
